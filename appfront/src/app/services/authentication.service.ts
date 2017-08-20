@@ -23,6 +23,20 @@ export class AuthenticationService{
       }
     });
   }
+  signup(email: string, username:string, password:string):Promise<boolean>{
+    return this.http.post('/',JSON.stringify({email:email,username:username,password:password})).toPromise()
+    .then(function(res){
+      let token=res.json() && res.json().token;
+      if(token){
+        this.token=token;
+        localStorage.setItem('currentUser',JSON.stringify({token:token}));
+        return true;
+      }
+      else{
+        return false;
+      }
+    });
+  }
   logout():void{
     this.token=null;
     localStorage.removeItem('currentUser');
