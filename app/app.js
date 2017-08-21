@@ -32,10 +32,11 @@ app.use('/', index);
 app.use('/users', users);
 //app.use('/signup',register);
 app.post('/signup',function(req,res,next){
-  console.log('hello');
-  console.log(req.body);
   authenticate.register(req,res);
 });
+app.post('/login',function(req,res,next){
+  authenticate.login(req,res);
+})
 mongoose.connect('mongodb://localhost/mean');
 
 // catch 404 and forward to error handler

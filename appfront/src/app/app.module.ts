@@ -13,8 +13,8 @@ import { AuthGuard } from './guards/auth.guard';
 
 const appRoutes: Routes=[
    { path : '', component : HomeComponent, canActivate:[AuthGuard]},
-   { path: 'login', component : LoginComponent},
    { path : 'signup', component: RegisterComponent},
+   { path: 'login', component : LoginComponent},
    { path : ' **',redirectTo: ''}
 ];
 
@@ -34,7 +34,10 @@ const appRoutes: Routes=[
     FormsModule,
     HttpModule,
   ],
-  providers: [AuthenticationService],
+  providers: [
+    AuthenticationService,
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
   })
 export class AppModule { }

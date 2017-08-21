@@ -11,7 +11,7 @@ export class AuthenticationService{
     this.token=currentUser && currentUser.token;
   }
   login(email: string,password: string):Promise<boolean>{
-    return this.http.post('localhost:3000/login',JSON.stringify({email:email,password:password})).toPromise()
+    return this.http.post('http://localhost:3000/login',JSON.stringify({email:email,password:password})).toPromise()
     .then(function(res){
       let token=res.json() && res.json().token;
       if(token){
@@ -25,7 +25,7 @@ export class AuthenticationService{
     });
   }
   signup(email: string, username:string, password:string):Promise<boolean>{
-     return this.http.post('http:///localhost:3000/signup',JSON.stringify({email:email,username:username,password:password}),{headers:
+     return this.http.post('http://localhost:3000/signup',JSON.stringify({email:email,username:username,password:password}),{headers:
 	 this.headers}).toPromise()
     .then(function(res){
       console.log(res.json().token);

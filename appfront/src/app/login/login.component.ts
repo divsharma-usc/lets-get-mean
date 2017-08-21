@@ -10,5 +10,8 @@ import {AuthenticationService} from '../services/authentication.service';
 })
 
 export class LoginComponent{
-
+  constructor(private userService: AuthenticationService){}
+  onSubmit(f:NgForm):void{
+   this.userService.login(f.value.email,f.value.password).then();
+ }
 }
