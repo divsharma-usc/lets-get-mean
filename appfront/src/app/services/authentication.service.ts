@@ -28,9 +28,9 @@ export class AuthenticationService{
      return this.http.post('http:///localhost:3000/signup',JSON.stringify({email:email,username:username,password:password}),{headers:
 	 this.headers}).toPromise()
     .then(function(res){
+      console.log(res.json().token);
       let token=res.json() && res.json().token;
       if(token){
-        this.token=token;
         localStorage.setItem('currentUser',JSON.stringify({token:token}));
         return true;
       }

@@ -5,19 +5,18 @@ module.exports.register=function(req,res){
   var user=new User();
   user.username=req.body.username;
   user.email=req.body.email;
-  console.log(req.body);
-  user.password='test';
+  user.password=req.body.password;
   console.log(user);
   user.save(function(err){
     if(!err){
       console.log('user saved!!');
     }
-    //var token;
-    //token=user.generateJwt();
-    //res.status(200);
-    //res.json({
-    //  "token":token
-    //});
+    var token;
+    token=user.generateJwt();
+    res.status(200);
+    res.json({
+      "token":token
+    });
   });
 };
 module.exports.login=function(req,res){
