@@ -23,8 +23,7 @@ userSchema.methods.setPassword=function(password){
   this.hash=crypto.pbkdf2Sync(password,this.salt,1000,64).toString('hex');
 }
 userSchema.methods.validPassword=function(password){
-  var hash=crypto.pbkdf2Sync(password,this.salt,1000,64).toString('hex');
-  return this.hash===hash;
+   return this.password===password;
 }
 userSchema.methods.generateJwt=function(){
   var expiryDate=new Date();

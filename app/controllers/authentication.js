@@ -1,6 +1,24 @@
 var passport=require('passport');
 var mongoose=require('mongoose');
 var User=mongoose.model('User');
+var LocalStrategy=require('passport-local').Strategy;
+
+passport.use(new LocalStrategy({ usernameField: 'email' },
+  function(email, password, done) {
+    User.findOne({ email: email}, function(err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false, { message: 'Incorrect username.' });
+      }
+      if (!user.validPassword(password)) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, user);
+    });
+  }
+));
+
+
 module.exports.register=function(req,res){
   var user=new User();
   user.username=req.body.username;
@@ -19,8 +37,9 @@ module.exports.register=function(req,res){
     });
   });
 };
+
 module.exports.login=function(req,res){
-  passport.authenticate('local',function(err,user,info){
+    passport.authenticate('local',function(err,user,info){
     var token;
     if(err){
       res.status(404).json(err);
