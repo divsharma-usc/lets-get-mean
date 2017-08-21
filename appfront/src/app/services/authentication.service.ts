@@ -5,6 +5,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class AuthenticationService{
   public token:string;
+  private headers=new Headers({'Content-Type':'application/json'});
   constructor(private http: Http){
     var currentUser=JSON.parse(localStorage.getItem('currentUser'));
     this.token=currentUser && currentUser.token;
@@ -24,7 +25,8 @@ export class AuthenticationService{
     });
   }
   signup(email: string, username:string, password:string):Promise<boolean>{
-    return this.http.post('/',JSON.stringify({email:email,username:username,password:password})).toPromise()
+     return this.http.post('http:///localhost:3000/signup',JSON.stringify({email:email,username:username,password:password}),{headers:
+	 this.headers}).toPromise()
     .then(function(res){
       let token=res.json() && res.json().token;
       if(token){

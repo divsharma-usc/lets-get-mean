@@ -6,14 +6,21 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport=require('passport');
 var mongoose=require('mongoose');
-require('./models/user.js');
-var index = require('./routes/index');
-var users = require('./routes/users');
+var cors=require('cors');
+
+require('./models/user');
+//var register=require('./routes/register');
+var index=require('./routes/index');
+var users=require('./routes/users');
+var authenticate=require('./controllers/authentication');
+
 
 var app = express();
 
+app.set('view engine','jade');
 app.set('views', path.join(__dirname, 'views'));
 
+app.use(cors());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -23,6 +30,12 @@ app.use(passport.initialize());
 
 app.use('/', index);
 app.use('/users', users);
+//app.use('/signup',register);
+app.post('/signup',function(req,res,next){
+  console.log('hello');
+  console.log(req.body);
+  authenticate.register(req,res);
+});
 mongoose.connect('mongodb://localhost/mean');
 
 // catch 404 and forward to error handler

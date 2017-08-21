@@ -12,6 +12,6 @@ import {AuthenticationService} from '../services/authentication.service';
 export class RegisterComponent{
     constructor(private userService: AuthenticationService){}
      onSubmit(f:NgForm):void{
-      this.userService.signup(f.value.email,f.value.username,f.value.passoword).then();
+      this.userService.signup(f.value.email,f.value.username,f.value.password).then();
     }
 }
