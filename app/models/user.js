@@ -1,5 +1,5 @@
 var mongoose=require('mongoose');
-var crypto=require('crypto');
+var bcrypt=require('bcryptjs');
 var jwt=require('jsonwebtoken');
 var Schema=mongoose.Schema;
 var userSchema=new Schema({
@@ -18,12 +18,12 @@ var userSchema=new Schema({
     required:true
   }
 });
-userSchema.methods.setPassword=function(password){
-  this.salt=crypto.randomBytes(16).toString('hex');
-  this.hash=crypto.pbkdf2Sync(password,this.salt,1000,64).toString('hex');
-}
-userSchema.methods.validPassword=function(password){
-   return this.password===password;
+userSchema.methods.validPassword=function(password,hash,callback){
+     console.log(password);
+     bcrypt.compare(password, hash, function(err, isMatch) {
+		 if(err) throw err;
+		 callback(null,isMatch);
+});
 }
 userSchema.methods.generateJwt=function(){
   var expiryDate=new Date();
