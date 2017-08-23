@@ -3,10 +3,11 @@
 <header>
   Welcome to Admin Panel
 </header>
-<div id="navigation_links">
-  <a routerLink='/newcourse'>Add new course</a>
-  <a routerLink='/courses'>Courses</a>
-</div>
+<nav id="navigation_links">
+   <a routerLink='/admin/newcourse' routerLinkActive="active">Add new course</a>
+   <a routerLink='/admin/courses' routerLinkActive="active">Courses</a>
+</nav>
+<div id="bar"></div>
 <router-outlet></router-outlet>
 </section>
 </main>
