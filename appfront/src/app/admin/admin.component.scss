@@ -1,0 +1,25 @@
+#cover{
+  min-height: 300px;
+  display: flex;
+  justify-content: center;
+  section{
+    width: 1000px;
+  }
+}
+header{
+  width: 900px;
+  margin-top: 20px;
+  font-size: 32px;
+  text-align: center;
+}
+#navigation_links{
+  width: 900px;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  a{
+    margin-left: 18px;
+    font-size: 18px;
+    text-decoration: none;
+  }
+}
