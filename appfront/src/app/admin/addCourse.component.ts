@@ -22,8 +22,14 @@ export class AddCourseComponent implements OnChanges{
       description:'',
       author:'',
       no_of_vedios: '',
-      secretLairs: this.fb.array([])
+      secretLairs: this.fb.array([ this.initvedio()])
     });
+  }
+  initvedio(){
+    return this.fb.group({
+      vedio_title:[''],
+      vedio_url:['']
+    })
   }
   ngOnChanges() {
     this.setVediosUrl(this.course.vedios_links);
@@ -37,7 +43,8 @@ export class AddCourseComponent implements OnChanges{
      return this.courseForm.get('secretLairs') as FormArray;
   }
   addLair() {
-  this.secretLairs.push(this.fb.group(new Vedios()));
+     const control=<FormArray>this.courseForm.controls['secretLairs'];
+     control.push(this.initvedio());
   }
   onSubmit(formval:any):void{
     console.log(formval);
