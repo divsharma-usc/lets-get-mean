@@ -1,1 +1,51 @@
-add new course Here
+<p>Form value: {{ courseForm.value | json }}</p>
+<div header>
+  <h3>Add the New course</h3>
+</div>
+<form [formGroup]="courseForm" (ngSubmit)="onSubmit(courseForm.value)" novalidate>
+  <div>
+   <label>Course id:
+     <input formControlName="course_id">
+   </label>
+ </div><br>
+ <div>
+   <label>Title:
+     <input formControlName="title">
+   </label>
+</div><br>
+<div>
+   <label>Description:
+     <input type="text" formControlName="description">
+   </label>
+</div><br>
+<div>
+   <label>Author:
+     <input type="text" formControlName="author">
+   </label>
+</div><br>
+<div>
+   <label>No of vedios:
+     <input type="text" formControlName="no_of_vedios">
+   </label>
+</div><br>
+
+<div formArrayName="secretLairs">
+  <div *ngFor="let vedio of secretLairs.controls; let i=index" [formGroupName]="i">
+     <h4>Vedio #{{i+1}} </h4>
+     <div>
+        <div>
+        <label>Vedio Title:
+         <input type="text" formControlName="vedio_title">
+        </label>
+        </div>
+        <div>
+        <label>Vedio url:
+         <input type="text" formControlName="vedio_url">
+        </label>
+      </div>
+     </div>
+  </div>
+  <button (click)="addLair()" type="button">Add a Secret Lair</button>
+</div>
+<button type="submit">Submit</button>
+</form>
