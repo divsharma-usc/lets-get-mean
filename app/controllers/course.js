@@ -18,3 +18,8 @@ module.exports.addNewCourse=function(req,res){
              }
            });
 }
+module.exports.showCourses=function(req,res){
+     Course.getCourses(function(err,courses){
+       res.send(courses);
+     });
+}

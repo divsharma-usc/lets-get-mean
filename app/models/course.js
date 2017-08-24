@@ -41,3 +41,6 @@ var courseSchema=new Schema({
 });
 var Course=mongoose.model('Course',courseSchema);
 module.exports=Course;
+module.exports.getCourses=function(callback){
+    Course.find({},callback);
+}
