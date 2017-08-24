@@ -12,7 +12,7 @@ export class CourseService{
   }
   addNewCourse(newCourse: Course):Promise<boolean>{
     console.log(newCourse);
-    return this.http.post('/',JSON.stringify(newCourse),{headers: this.headers}).toPromise()
+    return this.http.post('http://localhost:3000/newCourse',JSON.stringify(newCourse),{headers: this.headers}).toPromise()
     .then(res=>{
         return true;
     });

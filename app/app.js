@@ -9,10 +9,16 @@ var mongoose=require('mongoose');
 var cors=require('cors');
 
 require('./models/user');
-//var register=require('./routes/register');
+require('./models/course');
+
+var register=require('./routes/register');
 var index=require('./routes/index');
 var users=require('./routes/users');
+var newCourseRoute=require('./routes/newCourse');
+var login=require('./routes/login');
+
 var authenticate=require('./controllers/authentication');
+var newCourse=require('./controllers/course');
 
 
 var app = express();
@@ -31,13 +37,10 @@ app.use(passport.initialize());
 
 app.use('/', index);
 app.use('/users', users);
-//app.use('/signup',register);
-app.post('/signup',function(req,res,next){
-  authenticate.register(req,res);
-});
-app.post('/login',function(req,res,next){
-  authenticate.login(req,res);
-})
+app.use('/signup',register);
+app.use('/newCourse',newCourseRoute);
+app.use('/login',login);
+
 mongoose.connect('mongodb://localhost/mean');
 
 // catch 404 and forward to error handler
