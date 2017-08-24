@@ -16,6 +16,8 @@ import { CoursesComponent } from './admin/courses.component';
 import { AppRoutingModule } from './app-routing.module'
 
 import { AuthenticationService } from './services/authentication.service';
+import { CourseService } from './services/course.service';
+
 import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
@@ -37,6 +39,7 @@ import { AuthGuard } from './guards/auth.guard';
   ],
   providers: [
     AuthenticationService,
+    CourseService,
     AuthGuard
   ],
   bootstrap: [AppComponent]

@@ -1,51 +1,53 @@
-<p>Form value: {{ courseForm.value | json }}</p>
-<div header>
+<header>
   <h3>Add the New course</h3>
-</div>
+</header>
 <form [formGroup]="courseForm" (ngSubmit)="onSubmit(courseForm.value)" novalidate>
-  <div>
-   <label>Course id:
-     <input formControlName="course_id">
+  <div class="form-group">
+   <label class="center-block">Course id:
+     <input class="form-control" formControlName="course_id">
    </label>
- </div><br>
- <div>
-   <label>Title:
-     <input formControlName="title">
+ </div>
+ <div class="form-group">
+   <label class="center-block">Title:
+     <input class="form-control" formControlName="title">
+   </label>
+</div>
+<div class="form-group">
+   <label class="center-block">Description:
+     <textarea class="form-control"type="text" formControlName="description">
+     </textarea>
+   </label>
+</div>
+<div class="form-group">
+   <label class="center-block">Author:
+     <input class="form-control" type="text" formControlName="author">
    </label>
 </div><br>
-<div>
-   <label>Description:
-     <input type="text" formControlName="description">
-   </label>
-</div><br>
-<div>
-   <label>Author:
-     <input type="text" formControlName="author">
-   </label>
-</div><br>
-<div>
-   <label>No of vedios:
-     <input type="text" formControlName="no_of_vedios">
+<div class="form-group">
+   <label class="center-block">No of vedios:
+     <input class="form-control" type="text" formControlName="no_of_vedios">
    </label>
 </div><br>
 
 <div formArrayName="secretLairs">
   <div *ngFor="let vedio of secretLairs.controls; let i=index" [formGroupName]="i">
-     <h4>Vedio #{{i+1}} </h4>
-     <div>
-        <div>
+     <h4>Details for vedio {{i+1}} </h4>
+     <div class="secretlairs">
+        <div class="form-group">
         <label>Vedio Title:
-         <input type="text" formControlName="vedio_title">
+         <input class="form-control" type="text" formControlName="vedio_title">
         </label>
         </div>
-        <div>
+        <div class="form-group">
         <label>Vedio url:
-         <input type="text" formControlName="vedio_url">
+         <input class="form-control" type="text" formControlName="vedio_url">
         </label>
       </div>
      </div>
   </div>
-  <button (click)="addLair()" type="button">Add a Secret Lair</button>
+  <button (click)="addLair()" class="btn " type="button">Add new vedio</button>
 </div>
-<button type="submit">Submit</button>
+<div><br>
+<button type="submit" class="btn">Submit</button>
+</div>
 </form>

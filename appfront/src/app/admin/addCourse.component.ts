@@ -1,7 +1,10 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { Vedios, Course } from  '../models/course';
+
 import 'rxjs/add/operator/map';
+
+import { CourseService } from '../services/course.service';
 
 @Component({
  templateUrl: './addCourse.component.html',
@@ -12,7 +15,7 @@ export class AddCourseComponent implements OnChanges{
   @Input() course: Course;
 
   courseForm: FormGroup;
-  constructor(private fb: FormBuilder){
+  constructor(private fb: FormBuilder, private courseservice: CourseService){
      this.createForm();
   }
   createForm(){
@@ -48,5 +51,7 @@ export class AddCourseComponent implements OnChanges{
   }
   onSubmit(formval:any):void{
     console.log(formval);
+    this.courseservice.addNewCourse(formval).then();
+
   }
 }
