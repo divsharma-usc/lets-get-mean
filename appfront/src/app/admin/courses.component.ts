@@ -1,5 +1,10 @@
-import  { Component } from '@angular/core';
+import  { Component, OnInit } from '@angular/core';
+import  { Http } from '@angular/http';
 
+import  { CourseService } from '../services/course.service';
+import  { Course } from '../models/course';
+
+import  { Observable } from 'rxjs/Observable';
 @Component({
   templateUrl: './courses.component.html',
   styleUrls: [
@@ -7,6 +12,14 @@ import  { Component } from '@angular/core';
   ]
 })
 
-export class CoursesComponent{
+export class CoursesComponent implements OnInit{
+    courses: Course[];
 
+    constructor(private courseService: CourseService,private http: Http){}
+
+    ngOnInit():void{
+      this.http.get('http://localhost:3000/newCourse').subscribe(data=>{
+         this.courses=JSON.parse(data['_body']);
+      });
+    }
 }
