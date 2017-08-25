@@ -44,3 +44,6 @@ module.exports=Course;
 module.exports.getCourses=function(callback){
     Course.find({},callback);
 }
+module.exports.removeCourse=function(course_id,callback){
+      Course.find({_id:course_id}).remove(callback);
+}

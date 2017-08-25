@@ -1,0 +1,33 @@
+ul{
+  list-style: none;
+}
+.course{
+    margin-top: 10px;
+    background-color: #9E9E9E;
+    font-size: 18px;
+    color: white;
+    padding:5px;
+    border-radius: 8px;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
+button {
+  font-family: Arial;
+  background-color: #eee;
+  border: none;
+  padding: 2px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  cursor: hand;
+}
+button:hover {
+  background-color: #cfd8dc;
+}
+button.delete {
+  float:right;
+  margin-top: 1px;
+  margin-right: .4em;
+  background-color: #D50000 !important;
+  color:white;
+}

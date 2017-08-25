@@ -5,11 +5,12 @@ var router=express.Router();
 
 router.post('/',function(req,res){
    addCourse.addNewCourse(req,res);
-   //addCourse.showCourses(req,res);
 });
 router.get('/',function(req,res){
-  console.log('get req');
   addCourse.showCourses(req,res);
 });
+router.delete('/deletecourse/:course_id',function(req,res){
+  addCourse.deleteCourse(req,res);
+})
 
 module.exports=router;

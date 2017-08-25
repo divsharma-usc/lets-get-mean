@@ -23,3 +23,10 @@ module.exports.showCourses=function(req,res){
        res.send(courses);
      });
 }
+module.exports.deleteCourse=function(req,res){
+     const course_id=req.params.course_id;
+     Course.removeCourse(course_id,function(err,course){
+       res.status(200);
+       res.send('course deleted');
+     });
+}

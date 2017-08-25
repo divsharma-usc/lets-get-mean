@@ -1,5 +1,9 @@
 <ul class="couses">
 <li  *ngFor="let course of courses">
-  {{course.title}}
+  <div class="course">
+   Course : {{course.title}} <br>
+   Course Id : {{course.course_id}}
+   <button class="delete" (click)="delete(course); $event.stopPropagation()" >x</button>
+  </div>
 </li>
 </ul>

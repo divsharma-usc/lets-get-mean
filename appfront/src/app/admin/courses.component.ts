@@ -14,12 +14,18 @@ import  { Observable } from 'rxjs/Observable';
 
 export class CoursesComponent implements OnInit{
     courses: Course[];
+    course: Course;
 
     constructor(private courseService: CourseService,private http: Http){}
 
     ngOnInit():void{
       this.http.get('http://localhost:3000/newCourse').subscribe(data=>{
          this.courses=JSON.parse(data['_body']);
+      });
+    }
+    delete(course:any):void{
+      this.courseService.delete(course).then(()=>{
+        this.courses=this.courses.filter(c=>c!=course);
       });
     }
 }

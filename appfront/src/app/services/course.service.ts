@@ -18,4 +18,10 @@ export class CourseService{
         return true;
     });
   }
+  delete(course: any):Promise<void>{
+    console.log(course._id);
+    const url=`http://localhost:3000/newCourse/deletecourse/${course._id}`;
+     return this.http.delete(url,{headers:this.headers})
+           .toPromise().then(()=>{});
+  }
 }
