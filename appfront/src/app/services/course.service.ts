@@ -24,4 +24,7 @@ export class CourseService{
      return this.http.delete(url,{headers:this.headers})
            .toPromise().then(()=>{});
   }
+  getCourse(course_id:any):any{
+    console.log(course_id);
+  }
 }

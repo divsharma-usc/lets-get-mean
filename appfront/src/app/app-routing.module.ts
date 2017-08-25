@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { AddCourseComponent } from './admin/addCourse.component';
 import { CoursesComponent } from './admin/courses.component';
+import { EditCourseComponent } from './admin/editCourse.component';
 
 import { AuthenticationService } from './services/authentication.service';
 import { AuthGuard } from './guards/auth.guard';
@@ -25,7 +26,11 @@ const appRoutes: Routes=[
          },
          {
            path:'courses',
-           component: CoursesComponent
+           component: CoursesComponent,
+         },
+         {
+           path:'editCourse/:course',
+           component: EditCourseComponent
          }
       ]
     },

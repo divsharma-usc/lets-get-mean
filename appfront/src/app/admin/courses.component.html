@@ -3,7 +3,10 @@
   <div class="course">
    Course : {{course.title}} <br>
    Course Id : {{course.course_id}}
-   <button class="delete" (click)="delete(course); $event.stopPropagation()" >x</button>
+   <div class="rightSection">
+   <button class="delete" (click)="delete(course); $event.stopPropagation()" ><i class="fa fa-trash" aria-hidden="true"></i></button>
+   <button class="edit"  (click)="editCourse(course)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+   </div>
   </div>
 </li>
 </ul>
