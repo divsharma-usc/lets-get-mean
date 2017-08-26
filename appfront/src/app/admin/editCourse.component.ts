@@ -3,6 +3,7 @@ import 'rxjs/add/operator/map';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { CourseService } from '../services/course.service';
 
@@ -24,21 +25,27 @@ export class EditCourseComponent implements OnInit{
   constructor(
     private route: ActivatedRoute,
     private courseService:CourseService,
-    private fb: FormBuilder){
+    private fb: FormBuilder,
+    private router:Router){
      this.createForm(); }
 
    ngOnInit(){
-     console.log('initiating');
          this.route.params.subscribe(params=>this.courseid=params["course"]);
          this.courseService.getCourse(this.courseid).then((course)=>{
            this.course=course;
            this.fillForm();
          })
    }
-   initvedio(vedio){
+   initfillvedio(vedio){
      return this.fb.group({
        vedio_title:[vedio.vedio_title],
        vedio_url:[vedio.vedio_url]
+     })
+   }
+   initvedio(){
+     return this.fb.group({
+       vedio_title:[''],
+       vedio_url:['']
      })
    }
    setVediosUrl(ved:Vedios[]){
@@ -61,10 +68,13 @@ export class EditCourseComponent implements OnInit{
    }
    addLair(vedio) {
       const control=<FormArray>this.courseForm.controls['secretLairs'];
-      control.push(this.initvedio(vedio));
+      control.push(this.initfillvedio(vedio));
+   }
+   addnewLair(){
+     const control=<FormArray>this.courseForm.controls['secretLairs'];
+     control.push(this.initvedio());
    }
     fillForm(){
-      console.log(this.course.vedios);
       this.courseForm.patchValue({
        courseid: this.course.course_id,
        title: this.course.title,
@@ -73,9 +83,24 @@ export class EditCourseComponent implements OnInit{
        no_of_vedios: this.course.NoOfVedios
      });
      for(let vedio of this.course.vedios ){
-       console.log('hello');
        this.addLair(vedio);
      }
+  }
+  removeLair(vedio_index){
+    const control=<FormArray>this.courseForm.controls['secretLairs'];
+    control.removeAt(vedio_index);
+  }
+  onSubmit(formval:any):void{
+    const control=<FormArray>this.courseForm.controls['secretLairs'];
+    formval.no_of_vedios=control.length;
+    this.courseService.addEditedCourse(formval,this.course._id).then(res=>{
+        console.log('sth');
+        console.log(res);
+        if(res){
+          this.router.navigate(['/admin/courses']);
+        }
+    });
+
   }
 
 }

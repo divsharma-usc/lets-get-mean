@@ -15,5 +15,8 @@ router.delete('/deletecourse/:course_id',function(req,res){
 router.get('/editcourse/:course_id',function(req,res){
   addCourse.findCourse(req,res);
 });
+router.put('/editedCourse/:course_id',function(req,res){
+  addCourse.updateCourse(req,res);
+});
 
 module.exports=router;

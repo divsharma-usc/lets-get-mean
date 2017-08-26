@@ -15,6 +15,7 @@ module.exports.addNewCourse=function(req,res){
              }
              else{
                res.status(200);
+               res.send('Course Saved');
              }
            });
 }
@@ -33,4 +34,7 @@ module.exports.deleteCourse=function(req,res){
 module.exports.findCourse=function(req,res){
     const course_id=req.params.course_id;
     Course.getCourse(course_id,req,res);
+}
+module.exports.updateCourse=function(req,res){
+    Course.updateCourse(req,res);
 }

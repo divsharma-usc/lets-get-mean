@@ -52,3 +52,25 @@ module.exports.getCourse=function(course_id,req,res){
                res.send(docs);
       })
 }
+module.exports.updateCourse=function(req,res){
+      const course_id=req.params.course_id;
+      Course.findOne({_id:course_id},function(err,doc){
+        console.log(req.body);
+        doc.course_id=req.body.courseid;
+        doc.title=req.body.title;
+        doc.description=req.body.description;
+        doc.author=req.body.author;
+        doc.NoOfVedios=req.body.no_of_vedios;
+        doc.vedios=req.body.secretLairs;
+        console.log(doc);
+        doc.save(function(err){
+          if(err){
+            console.log(err);
+          }
+          else{
+            res.status(200);
+            res.send('Course Edited');
+          }
+        });
+      })
+}

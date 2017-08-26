@@ -30,7 +30,7 @@
 </div><br>
 
 <div formArrayName="secretLairs">
-  <div *ngFor="let vedio of secretLairs.controls; let i=index" [formGroupName]="i">
+  <div *ngFor="let vedio of secretLairs.controls; let i=index" [formGroupName]="i" class="vedios">
      <h4>Details for vedio {{i+1}} </h4>
      <div class="secretlairs">
         <div class="form-group">
@@ -43,7 +43,8 @@
          <input class="form-control" type="text" formControlName="vedio_url">
         </label>
       </div>
-     </div>
+    </div>
+     <button (click)="removeLair(i)" class="delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
   </div>
   <button (click)="addLair()" class="btn " type="button">Add new vedio</button>
 </div>

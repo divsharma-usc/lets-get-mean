@@ -4,3 +4,37 @@
 header{
   color: #E91E63;
 }
+form{
+  background-color: #FFA726;
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  border-radius: 10px;
+  margin-bottom: 40px;
+}
+.vedios{
+  border: 2px solid white;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 10px;
+}
+button {
+  font-family: Arial;
+  background-color: #eee;
+  border: none;
+  padding: 2px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  cursor: hand;
+}
+button:hover {
+  background-color: #cfd8dc;
+}
+button.delete {
+  float:right;
+  margin-top: 1px;
+  margin-bottom: 20px;
+  margin-right: .4em;
+  background-color: #D50000 !important;
+  color:white;
+}

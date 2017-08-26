@@ -18,6 +18,14 @@ export class CourseService{
         return true;
     });
   }
+  addEditedCourse(newCourse: Course,courseid:any):Promise<boolean>{
+    const url=`http://localhost:3000/newCourse/editedCourse/${courseid}`;
+    return this.http.put(url,JSON.stringify(newCourse),{headers: this.headers}).toPromise()
+    .then(res=>{
+        console.log(res);
+        return true;
+    });
+  }
   delete(course: any):Promise<void>{
      const url=`http://localhost:3000/newCourse/deletecourse/${course._id}`;
      return this.http.delete(url,{headers:this.headers})

@@ -1,7 +1,7 @@
 <header>
   <h3>Edit the Course</h3>
 </header>
-<form [formGroup]="courseForm" (ngSubmit)="onSubmit(courseForm.value)" novalidate>
+<form [formGroup]="courseForm" (ngSubmit)="onSubmit(courseForm.value)" novalidate class="form">
   <div class="form-group">
    <label class="center-block">Course id:
      <input class="form-control" formControlName="courseid">
@@ -29,7 +29,7 @@
    </label>
 </div><br>
 <div formArrayName="secretLairs">
-  <div *ngFor="let vedio of secretLairs.controls; let i=index" [formGroupName]="i">
+  <div *ngFor="let vedio of secretLairs.controls; let i=index" [formGroupName]="i" class="vedios">
      <h4>Details for vedio {{i+1}} </h4>
      <div class="secretlairs">
         <div class="form-group">
@@ -43,9 +43,11 @@
         </label>
       </div>
      </div>
+     <button (click)="removeLair(i)" class="delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
   </div>
+  <button (click)="addnewLair()" class="btn " type="button">Add new vedio</button>
 </div>
 <div><br>
-<button type="submit" class="btn">Submit</button>
+<button type="submit"  class="btn">Save Changes</button>
 </div>
 </form>

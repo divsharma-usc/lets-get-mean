@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { Vedios, Course } from  '../models/course';
+import { Router } from '@angular/router';
 
 import 'rxjs/add/operator/map';
 
@@ -15,7 +16,7 @@ export class AddCourseComponent implements OnChanges{
   @Input() course: Course;
 
   courseForm: FormGroup;
-  constructor(private fb: FormBuilder, private courseservice: CourseService){
+  constructor(private fb: FormBuilder, private courseservice: CourseService,private router:Router){
      this.createForm();
   }
   createForm(){
@@ -50,7 +51,17 @@ export class AddCourseComponent implements OnChanges{
      control.push(this.initvedio());
   }
   onSubmit(formval:any):void{
-    this.courseservice.addNewCourse(formval).then();
+    const control=<FormArray>this.courseForm.controls['secretLairs'];
+    formval.no_of_vedios=control.length;
+    this.courseservice.addNewCourse(formval).then(res=>{
+       if(res){
+        this.router.navigate(['/admin']);
+       }
+    });
 
+  }
+  removeLair(vedio_index){
+    const control=<FormArray>this.courseForm.controls['secretLairs'];
+    control.removeAt(vedio_index);
   }
 }
