@@ -47,3 +47,8 @@ module.exports.getCourses=function(callback){
 module.exports.removeCourse=function(course_id,callback){
       Course.find({_id:course_id}).remove(callback);
 }
+module.exports.getCourse=function(course_id,req,res){
+      Course.find({_id:course_id},function(err,docs){
+               res.send(docs);
+      })
+}

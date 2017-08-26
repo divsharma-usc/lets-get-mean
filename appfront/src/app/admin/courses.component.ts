@@ -32,7 +32,6 @@ export class CoursesComponent implements OnInit{
       });
     }
     editCourse(course:any):void{
-      console.log(course);
       this.router.navigate(['/admin/editCourse',course._id]);
     }
 }

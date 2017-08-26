@@ -50,7 +50,6 @@ export class AddCourseComponent implements OnChanges{
      control.push(this.initvedio());
   }
   onSubmit(formval:any):void{
-    console.log(formval);
     this.courseservice.addNewCourse(formval).then();
 
   }

@@ -1,1 +1,51 @@
-Edit here
+<header>
+  <h3>Edit the Course</h3>
+</header>
+<form [formGroup]="courseForm" (ngSubmit)="onSubmit(courseForm.value)" novalidate>
+  <div class="form-group">
+   <label class="center-block">Course id:
+     <input class="form-control" formControlName="courseid">
+   </label>
+ </div>
+ <div class="form-group">
+   <label class="center-block">Title:
+     <input class="form-control" formControlName="title">
+   </label>
+</div>
+<div class="form-group">
+   <label class="center-block">Description:
+     <textarea class="form-control"type="text" formControlName="description">
+     </textarea>
+   </label>
+</div>
+<div class="form-group">
+   <label class="center-block">Author:
+     <input class="form-control" type="text" formControlName="author">
+   </label>
+</div><br>
+<div class="form-group">
+   <label class="center-block">No of vedios:
+     <input class="form-control" type="text" formControlName="no_of_vedios">
+   </label>
+</div><br>
+<div formArrayName="secretLairs">
+  <div *ngFor="let vedio of secretLairs.controls; let i=index" [formGroupName]="i">
+     <h4>Details for vedio {{i+1}} </h4>
+     <div class="secretlairs">
+        <div class="form-group">
+        <label>Vedio Title:
+         <input class="form-control" type="text" formControlName="vedio_title">
+        </label>
+        </div>
+        <div class="form-group">
+        <label>Vedio url:
+         <input class="form-control" type="text" formControlName="vedio_url">
+        </label>
+      </div>
+     </div>
+  </div>
+</div>
+<div><br>
+<button type="submit" class="btn">Submit</button>
+</div>
+</form>

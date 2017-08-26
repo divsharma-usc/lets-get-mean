@@ -30,3 +30,7 @@ module.exports.deleteCourse=function(req,res){
        res.send('course deleted');
      });
 }
+module.exports.findCourse=function(req,res){
+    const course_id=req.params.course_id;
+    Course.getCourse(course_id,req,res);
+}
