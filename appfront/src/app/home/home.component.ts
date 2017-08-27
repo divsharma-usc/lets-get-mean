@@ -17,4 +17,13 @@ export class HomeComponent implements OnInit{
          this.courses=JSON.parse(data['_body']);
        })
    }
+   enroll(course):void{
+     const payLoad=JSON.parse(localStorage.getItem('currentUser')).token.split('.')[1];
+     const user=JSON.parse(atob(payLoad));
+     const url=`http://localhost:3000/home/enroll/${course._id}/${user._id}`;
+     this.http.get(url).subscribe(res=>{
+         console.log(res);
+     })
+   }
+
 }

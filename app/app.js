@@ -10,6 +10,7 @@ var cors=require('cors');
 
 require('./models/user');
 require('./models/course');
+require('./models/enroll');
 
 var register=require('./routes/register');
 var index=require('./routes/index');
