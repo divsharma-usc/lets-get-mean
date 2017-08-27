@@ -16,6 +16,7 @@ var index=require('./routes/index');
 var users=require('./routes/users');
 var newCourseRoute=require('./routes/newCourse');
 var login=require('./routes/login');
+var home=require('./routes/home');
 
 var authenticate=require('./controllers/authentication');
 var newCourse=require('./controllers/course');
@@ -40,6 +41,7 @@ app.use('/users', users);
 app.use('/signup',register);
 app.use('/newCourse',newCourseRoute);
 app.use('/login',login);
+app.use('/home',home);
 
 mongoose.connect('mongodb://localhost/mean');
 

@@ -1,17 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Baloo+Bhaijaan');
 #mainheader{
-  width: 100%;
-  min-height: 50px;
-  position: fixed;
   background-color: #E91E63;
-  margin-top: -10px;
-  margin-left: -8px;
-  display:flex;
+  height: 50px;
+  display: flex;
   align-items: center;
+  width: 100%;
 }
 #mainheader div{
   color: white;
   font-family: 'Baloo Bhaijaan', cursive;
-  font-size: 24px;
+  font-size: 26px;
   padding-left: 140px;
 }

@@ -3,3 +3,11 @@
       Coursea
    </div>
 </header>
+<main id="cover">
+   <div *ngFor="let course of courses">
+        <div class="course">
+             {{course.title}}
+             {{course.description}}
+        </div>
+   </div>
+</main>

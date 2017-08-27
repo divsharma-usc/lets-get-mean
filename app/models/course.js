@@ -44,6 +44,16 @@ module.exports=Course;
 module.exports.getCourses=function(callback){
     Course.find({},callback);
 }
+module.exports.getCoursesLimit=function(req,res){
+    Course.find({}).limit(9).exec(function(err,courses){
+        if(err){
+          console.log(err);
+        }
+        else{
+           res.send(courses);
+        }
+    });
+}
 module.exports.removeCourse=function(course_id,callback){
       Course.find({_id:course_id}).remove(callback);
 }
@@ -55,14 +65,12 @@ module.exports.getCourse=function(course_id,req,res){
 module.exports.updateCourse=function(req,res){
       const course_id=req.params.course_id;
       Course.findOne({_id:course_id},function(err,doc){
-        console.log(req.body);
         doc.course_id=req.body.courseid;
         doc.title=req.body.title;
         doc.description=req.body.description;
         doc.author=req.body.author;
         doc.NoOfVedios=req.body.no_of_vedios;
         doc.vedios=req.body.secretLairs;
-        console.log(doc);
         doc.save(function(err){
           if(err){
             console.log(err);
