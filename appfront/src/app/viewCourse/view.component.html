@@ -1,0 +1,4 @@
+<div *ngIf="course; else loading" class="main">
+Couse will be shown here {{course.title}}
+</div>
+<ng-template #loading><div class="loading"><img src='../assets/images/loading.gif'/></div></ng-template>

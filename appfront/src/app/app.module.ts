@@ -13,6 +13,7 @@ import { AdminComponent } from './admin/admin.component';
 import { AddCourseComponent } from './admin/addCourse.component';
 import { CoursesComponent } from './admin/courses.component';
 import { EditCourseComponent } from './admin/editCourse.component';
+import { ViewComponent } from './viewCourse/view.component';
 
 import { AppRoutingModule } from './app-routing.module'
 
@@ -30,7 +31,8 @@ import { AuthGuard } from './guards/auth.guard';
     AdminComponent,
     AddCourseComponent,
     CoursesComponent,
-    EditCourseComponent
+    EditCourseComponent,
+    ViewComponent
   ],
   imports: [
     BrowserModule,

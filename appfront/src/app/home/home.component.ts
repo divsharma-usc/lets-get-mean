@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
+import { Router } from '@angular/router';
 
 import { User } from '../models/user';
 import { Course } from '../models/course';
@@ -12,7 +13,8 @@ import { Course } from '../models/course';
 export class HomeComponent implements OnInit{
    courses:any;
    enrollcourses:any;
-   constructor(private http:Http){}
+   constructor(private http:Http,
+   private router:Router){}
    ngOnInit():void{
        this.http.get('http://localhost:3000/home').subscribe(data=>{
          this.courses=JSON.parse(data['_body']);
@@ -29,8 +31,13 @@ export class HomeComponent implements OnInit{
      const user=JSON.parse(atob(payLoad));
      const url=`http://localhost:3000/home/enroll/${course._id}/${user._id}`;
      this.http.get(url).subscribe(res=>{
-         console.log(res);
+         if(res){
+           this.router.navigate(['/viewCourse',course._id]);
+         }
      })
+   }
+   goto(course):void{
+          this.router.navigate(['/viewCourse',course._id]);
    }
    checkCourse():void{
      const payLoad=JSON.parse(localStorage.getItem('currentUser')).token.split('.')[1];
