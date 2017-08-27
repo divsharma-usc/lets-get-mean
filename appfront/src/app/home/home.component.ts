@@ -11,11 +11,18 @@ import { Course } from '../models/course';
 })
 export class HomeComponent implements OnInit{
    courses:any;
+   enrollcourses:any;
    constructor(private http:Http){}
    ngOnInit():void{
        this.http.get('http://localhost:3000/home').subscribe(data=>{
          this.courses=JSON.parse(data['_body']);
+         for(let course of this.courses){
+             course["enroll"]=false;
+         }
+         this.checkCourse();
        })
+
+
    }
    enroll(course):void{
      const payLoad=JSON.parse(localStorage.getItem('currentUser')).token.split('.')[1];
@@ -25,5 +32,19 @@ export class HomeComponent implements OnInit{
          console.log(res);
      })
    }
+   checkCourse():void{
+     const payLoad=JSON.parse(localStorage.getItem('currentUser')).token.split('.')[1];
+     const user=JSON.parse(atob(payLoad));
+     const url=`http://localhost:3000/home/checkCourse/${user._id}`;
+      this.http.get(url).subscribe(data=>{
+         this.enrollcourses=JSON.parse(data["_body"]);
+         for(let course of this.courses){
+              for(let enroll of this.enrollcourses){
+                   if(course._id===enroll.course&&course.enroll===false)
+                     course["enroll"]=true;
+              }
+         }
+      });
 
-}
+   }
+ }

@@ -9,5 +9,8 @@ router.get('/',function(req,res){
 router.get('/enroll/:course_id/:user_id',function(req,res){
     Home.enrollUser(req,res);
 })
+router.get('/checkCourse/:user_id',function(req,res){
+   Home.checkCourse(req,res);
+});
 
 module.exports=router;

@@ -29,3 +29,17 @@ module.exports.enrollUser=function(req,res){
       })
 
 }
+module.exports.checkCourse=function(req,res){
+  var user_id=req.params.user_id;
+  Enroll.find({user:user_id},function(err,docs){
+    if(err){
+         console.log(err);
+         res.status(404);
+         res.send('Not found');
+    }
+    else{
+        res.send(docs);
+    }
+  });
+
+}
