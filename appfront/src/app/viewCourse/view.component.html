@@ -1,4 +1,10 @@
 <div *ngIf="course; else loading" class="main">
 Couse will be shown here {{course.title}}
+  <div *ngFor="let vedio of course.vedios">
+      <div>
+          <button (click)="getUrl(vedio.vedio_url)">{{vedio.vedio_title}}</button>
+      </div>
+  </div>
+   <iframe width="520" height="315" [src]="url" frameborder="0" allowfullscreen></iframe>
 </div>
 <ng-template #loading><div class="loading"><img src='../assets/images/loading.gif'/></div></ng-template>
