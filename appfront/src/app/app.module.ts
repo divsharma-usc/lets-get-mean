@@ -20,6 +20,7 @@ import { AppRoutingModule } from './app-routing.module'
 
 import { AuthenticationService } from './services/authentication.service';
 import { CourseService } from './services/course.service';
+import { EnrollService } from './services/enroll.service';
 
 import { AuthGuard } from './guards/auth.guard';
 
@@ -46,6 +47,7 @@ import { AuthGuard } from './guards/auth.guard';
   providers: [
     AuthenticationService,
     CourseService,
+    EnrollService,
     AuthGuard
   ],
   bootstrap: [AppComponent]

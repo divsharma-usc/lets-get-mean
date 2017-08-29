@@ -43,3 +43,19 @@ module.exports.checkCourse=function(req,res){
   });
 
 }
+module.exports.improvePerformance=function(req,res){
+      var course_id=req.body.course_id;
+      var user_id=req.body.user_id;
+      var vedio=req.body.vedio_id;
+      Enroll.findOne({course:course_id,user:user_id},function(err,doc){
+        if(err){
+          console.log(err);
+        }
+        else{
+           doc.performace.push(vedio);
+           doc.save();
+           res.send('enrollment updated');
+        }
+      })
+
+}

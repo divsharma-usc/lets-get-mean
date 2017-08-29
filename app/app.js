@@ -18,9 +18,11 @@ var users=require('./routes/users');
 var newCourseRoute=require('./routes/newCourse');
 var login=require('./routes/login');
 var home=require('./routes/home');
+var enroll=require('./routes/enroll');
 
 var authenticate=require('./controllers/authentication');
 var newCourse=require('./controllers/course');
+var enrollController=require('./controllers/enroll.js');
 
 
 var app = express();
@@ -43,6 +45,7 @@ app.use('/signup',register);
 app.use('/newCourse',newCourseRoute);
 app.use('/login',login);
 app.use('/home',home);
+app.use('/enroll',enroll);
 
 mongoose.connect('mongodb://localhost/mean');
 
