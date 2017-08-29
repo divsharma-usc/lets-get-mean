@@ -14,6 +14,7 @@ import { AddCourseComponent } from './admin/addCourse.component';
 import { CoursesComponent } from './admin/courses.component';
 import { EditCourseComponent } from './admin/editCourse.component';
 import { ViewComponent } from './viewCourse/view.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module'
 
@@ -39,7 +40,8 @@ import { AuthGuard } from './guards/auth.guard';
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule.forRoot()
   ],
   providers: [
     AuthenticationService,

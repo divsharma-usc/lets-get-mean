@@ -1,10 +1,25 @@
 <div *ngIf="course; else loading" class="main">
-Couse will be shown here {{course.title}}
-  <div *ngFor="let vedio of course.vedios">
-      <div>
-          <button (click)="getUrl(vedio.vedio_url)">{{vedio.vedio_title}}</button>
-      </div>
-  </div>
-   <iframe width="520" height="315" [src]="url" frameborder="0" allowfullscreen></iframe>
+ <div id="left">
+     <div *ngFor="let vedio of course.vedios">
+         <div>
+             <button (click)=clickfunction(vedio.vedio_url)>{{vedio.vedio_title}}</button>
+        </div>
+    </div>
+</div>
+<div id="right">
+    Couse will be shown here {{course.title}}
+    <ngb-rating [(rate)]="currentRate" [(max)]="max">
+      <ng-template let-fill="fill">
+        <span class="star" [class.filled]="fill===100">&#9733;</span>
+      </ng-template>
+    </ngb-rating>
+    <p><ngb-progressbar type="info" [value]="50"></ngb-progressbar></p>
+    <div [hidden]="!play">
+          <button (click)="change()">Start Course</button>
+    </div>
+    <div [hidden]="play">
+         <div id="player" ></div>
+    </div>
+</div>
 </div>
 <ng-template #loading><div class="loading"><img src='../assets/images/loading.gif'/></div></ng-template>
