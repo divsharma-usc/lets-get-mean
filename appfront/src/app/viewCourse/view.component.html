@@ -3,7 +3,11 @@
  <div id="left">
      <div *ngFor="let vedio of course.vedios">
          <div>
-             <button (click)=clickfunction(vedio.vedio_url)>{{vedio.vedio_title}}</button>
+              <button (click)=clickfunction(vedio.vedio_url,vedio._id)>{{vedio.vedio_title}}</button>
+              <div *ngIf="checkvedioid(vedio._id);else other">
+                Y
+              </div>
+              <ng-template #other>X</ng-template>
         </div>
     </div>
 </div>

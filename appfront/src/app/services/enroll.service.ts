@@ -21,7 +21,7 @@ export class EnrollService{
   getEnrollment(courseId:any,userId:any):Promise<any>{
     const url=`http://localhost:3000/enroll/${courseId}/${userId}`;
     return this.http.get(url).toPromise().then(data=>{
-        return JSON.parse(data['_body'])[0];
+        return JSON.parse(data['_body']);
     })
   }
 }

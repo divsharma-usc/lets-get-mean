@@ -17,6 +17,7 @@ export class ViewComponent{
   private baseurl:string;
   private url;
   private vedioid;
+  private vedioidarray=[];
   currentRate;
   max=5;
   private urldoc:any;
@@ -27,6 +28,7 @@ export class ViewComponent{
   private vedios:any;
   private user:any;
   private enrollment:any;
+  private vediop:any;
   constructor(private route: ActivatedRoute,
   private courseservice:CourseService,
   private sanitizer:DomSanitizer,
@@ -36,14 +38,23 @@ export class ViewComponent{
   }
 
   ngOnInit(){
+        this.user=JSON.parse(localStorage["currentUser"]).token.split('.')[1];
+        this.user=JSON.parse(atob(this.user));
         this.route.params.subscribe(params=>this.courseid=params["course"]);
         this.courseservice.getCourse(this.courseid).then((course)=>{
         this.course=course;
+        this.currentRate=this.course.rating;
+        this.enrollservice.getEnrollment(this.course._id,this.user._id).then(res=>{
+            this.vedios=res["performace"];
+            for(let ved of this.vedios){
+                 this.vedioidarray.push(ved._id);
+            }
         });
-        this.user=JSON.parse(localStorage["currentUser"]).token.split('.')[1];
-        this.user=JSON.parse(atob(this.user));
+        });
+
+
     }
-  getUrl(url){
+   getUrl(url){
       this.vedioid=url.split("v=")[1];
    }
    change(){
@@ -56,12 +67,19 @@ export class ViewComponent{
       this.utb=window["playme"];
       this.uta=window["playmestate"];
       this.state=this.uta();
+      this.vediop=this.course.vedios[0]._id;
       if(this.state==0){
-              this.enrollservice.improvePerformace(this.course._id,this.user._id,this.course.vedio[0]._id);
+              if(!this.vedioidarray.includes(this.course.vedio[0]._id)){
+                this.enrollservice.improvePerformace(this.course._id,this.user._id,this.course.vedio[0]._id).then(res=>{
+                    if(res){
+                      this.vedioidarray.push(this.course.vedio[0]._id);
+                    }
+                });
+              }
       }
       this.utb(this.urldoc);
    }
-   clickfunction(course){
+   clickfunction(course,vedioid){
       this.getUrl(course)
       this.urldoc=  {'videoId': this.vedioid,
              'startSeconds': 5,
@@ -71,16 +89,28 @@ export class ViewComponent{
        this.uta=window["playmestate"];
        this.state=this.uta();
        if(this.state===0){
+              if(!this.vedioidarray.includes(this.vediop)){
+                 this.enrollservice.improvePerformace(this.course._id,this.user._id,this.vediop).then(res=>{
+                   if(res){
+                     this.vedioidarray.push(this.vediop);
+                   }
+                 });
 
+              }
        }
+       this.vediop=vedioid;
        this.utb(this.urldoc);
-       this.enrollservice.improvePerformace(this.course._id,this.user._id,this.course.vedios[0]._id);
-       this.enrollservice.getEnrollment(this.course._id,this.user._id);
-  }
+
+    }
   goBack(){
     this.location.back();
   }
-
-
-
+  checkvedioid(vedioid){
+    if(this.vedioidarray.includes(vedioid)){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
 }

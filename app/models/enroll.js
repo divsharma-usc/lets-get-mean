@@ -57,5 +57,11 @@ module.exports.improvePerformance=function(req,res){
            res.send('enrollment updated');
         }
       })
-
+}
+module.exports.getEnrollment=function(req,res){
+      var course_id=req.params.course_id;
+      var user_id=req.params.user_id;
+      Enroll.findOne({course:course_id,user:user_id},function(err,doc){
+               res.send(doc);
+      })
 }

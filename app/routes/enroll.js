@@ -9,6 +9,7 @@ router.post('/',function(req,res){
 })
 router.get('/:course_id/:user_id',function(req,res){
      console.log(req.params);
+     Enroll.getEnrollment(req,res);
 })
 
 module.exports=router;
