@@ -88,17 +88,19 @@ export class ViewComponent{
        this.utb=window["playme"];
        this.uta=window["playmestate"];
        this.state=this.uta();
+       console.log(this.vediop);
        if(this.state===0){
               if(!this.vedioidarray.includes(this.vediop)){
                  this.enrollservice.improvePerformace(this.course._id,this.user._id,this.vediop).then(res=>{
                    if(res){
                      this.vedioidarray.push(this.vediop);
+                     this.vediop=vedioid;
                    }
                  });
 
               }
        }
-       this.vediop=vedioid;
+
        this.utb(this.urldoc);
 
     }

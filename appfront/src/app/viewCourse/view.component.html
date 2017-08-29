@@ -4,6 +4,7 @@
      <div *ngFor="let vedio of course.vedios">
          <div>
               <button (click)=clickfunction(vedio.vedio_url,vedio._id)>{{vedio.vedio_title}}</button>
+              {{vedio._id}};
               <div *ngIf="checkvedioid(vedio._id);else other">
                 Y
               </div>
