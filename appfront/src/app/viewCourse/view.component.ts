@@ -22,20 +22,21 @@ export class ViewComponent{
   max=5;
   private urldoc:any;
   private utb:any;
-  private uta:any;
-  private state:any;
   private play:any;
   private vedios:any;
   private user:any;
   private enrollment:any;
   private vediop:any;
   private utl:any;
+  private first:any;
+  private courses:any;
   constructor(private route: ActivatedRoute,
   private courseservice:CourseService,
   private sanitizer:DomSanitizer,
   private enrollservice: EnrollService,
   private location:Location){
     this.play=true;
+    this.first=true;
  }
   ngOnInit(){
         this.user=JSON.parse(localStorage["currentUser"]).token.split('.')[1];
@@ -52,9 +53,11 @@ export class ViewComponent{
                });
                if(localStorage.getItem("play")){
                        localStorage.removeItem("play");
+                       this.courses=true;
                }
                else{
                        localStorage.setItem("play","false");
+                       this.courses=false;
                        window.location.reload();
                }
         });
@@ -63,26 +66,24 @@ export class ViewComponent{
       this.vedioid=url.split("v=")[1];
    }
    change(){
-          this.getUrl(this.course.vedios[0].vedio_url);
-          this.urldoc=  {   'videoId': this.vedioid,
+        console.log(this.course);
+        this.getUrl(this.course.vedios[0].vedio_url);
+        this.urldoc=  {   'videoId': this.vedioid,
                          'startSeconds': 5,
                          'endSeconds': 60,
                          'suggestedQuality': 'large'};
-         this.utb=window["playme"];
-         this.uta=window["playmestate"];
-         this.state=this.uta();
-         this.vediop=this.course.vedios[0]._id;
-         if(this.state==0){
-              if(!this.vedioidarray.includes(this.course.vedio[0]._id)){
-                this.enrollservice.improvePerformace(this.course._id,this.user._id,this.course.vedio[0]._id).then(res=>{
+        this.utb=window["playme"];
+        this.play=false;
+        this.utb(this.urldoc);
+        if(!this.vedioidarray.includes(this.course.vedios[0]._id)){
+               return  this.enrollservice.improvePerformace(this.course._id,this.user._id,this.course.vedios[0]._id).then(res=>{
                     if(res){
-                      this.vedioidarray.push(this.course.vedio[0]._id);
+                      this.vedioidarray.push(this.course.vedios[0]._id);
                     }
-                });
-              }
+            });
       }
-      this.utb(this.urldoc);
-      this.play=false;
+
+
    }
    clickfunction(course,vedioid){
       this.play=false;
@@ -94,10 +95,7 @@ export class ViewComponent{
              'endSeconds': 60,
              'suggestedQuality': 'large'};
        this.utb=window["playme"];
-       this.uta=window["playmestate"];
-       this.state=this.uta();
-       console.log(this.vediop);
-       if(this.state===0){
+       this.vediop=vedioid;
               if(!this.vedioidarray.includes(this.vediop)){
                  this.enrollservice.improvePerformace(this.course._id,this.user._id,this.vediop).then(res=>{
                    if(res){
@@ -107,14 +105,12 @@ export class ViewComponent{
                  });
 
               }
-       }
-
        this.utb(this.urldoc);
 
     }
   goBack(){
-    this.location.back();
-  }
+            this.location.back();
+    }
   checkvedioid(vedioid){
     if(this.vedioidarray.includes(vedioid)){
       return true;

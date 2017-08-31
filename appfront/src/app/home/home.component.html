@@ -1,3 +1,4 @@
+<div id="maincover">
 <header id="mainheader">
    <div>
       Coursea
@@ -5,13 +6,21 @@
 </header>
 <main id="cover">
    <div *ngFor="let course of courses">
-        <div class="course">
-             {{course.title}}
-             {{course.description}}
+        <div class="card-cover">
+            <div class="card-title">
+                 <h1 class="card-title-text">{{course.title}}</h1>
+            </div>
+            <div class="card-description">
+                   {{course.description}}
+            </div>
+            <div id="line"></div>
+            <div class="card-button">
+                   <div *ngIf="course.enroll===false;else other_content">
+                     <button (click)="enroll(course)" >Enroll Me</button>
+                   </div>
+                  <ng-template #other_content><button (click)="goto(course)" >View Course</button></ng-template>
+            </div>
         </div>
-           <div *ngIf="course.enroll===false;else other_content">
-           <button (click)="enroll(course)">Enroll Me</button>
-           </div>
-           <ng-template #other_content><button (click)="goto(course)">View Course</button></ng-template>
    </div>
 </main>
+</div>
