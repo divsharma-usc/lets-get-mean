@@ -5,9 +5,9 @@
    </div>
 </header>
 <main id="cover">
-   <div *ngFor="let course of courses">
+   <div *ngFor="let course of courses; let i = index">
         <div class="card-cover">
-            <div class="card-title">
+            <div class="card-title" [ngStyle]="{'background-color':setcolor[i]}">
                  <h1 class="card-title-text">{{course.title}}</h1>
             </div>
             <div class="card-description">
@@ -23,4 +23,6 @@
         </div>
    </div>
 </main>
+<footer>
+</footer>
 </div>

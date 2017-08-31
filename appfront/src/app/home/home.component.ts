@@ -13,8 +13,11 @@ import { Course } from '../models/course';
 export class HomeComponent implements OnInit{
    courses:any;
    enrollcourses:any;
+   setcolor:any
    constructor(private http:Http,
-   private router:Router){}
+   private router:Router){
+      this.setcolor=["#30bce1","#22c2b1","#b068e6","#6a7c8e","#fa6d7d","#ed9c43"];
+   }
    ngOnInit():void{
        this.http.get('http://localhost:3000/home').subscribe(data=>{
          this.courses=JSON.parse(data['_body']);

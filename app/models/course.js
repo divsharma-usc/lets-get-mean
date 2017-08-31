@@ -45,7 +45,7 @@ module.exports.getCourses=function(callback){
     Course.find({},callback);
 }
 module.exports.getCoursesLimit=function(req,res){
-    Course.find({}).limit(9).exec(function(err,courses){
+    Course.find({}).limit(6).exec(function(err,courses){
         if(err){
           console.log(err);
         }
