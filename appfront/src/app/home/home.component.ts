@@ -14,9 +14,16 @@ export class HomeComponent implements OnInit{
    courses:any;
    enrollcourses:any;
    setcolor:any
+   seta1:any;
+   seta2:any;
+   seta3:any;
+   images=['a.jpg','b.jpg','c.jpg','d.jpg','e.jpg','f.jpg']
    constructor(private http:Http,
    private router:Router){
       this.setcolor=["#30bce1","#22c2b1","#b068e6","#6a7c8e","#fa6d7d","#ed9c43"];
+      this.seta1=[2,2,169,125,255,255];
+      this.seta2=[179,204,181,151,162,84];
+      this.seta3=[228,168,237,173,52,131];
    }
    ngOnInit():void{
        this.http.get('http://localhost:3000/home').subscribe(data=>{
@@ -57,4 +64,10 @@ export class HomeComponent implements OnInit{
       });
 
    }
+  getcolors(i):any{
+     var b={background:'linear-gradient(rgba('+this.seta1[i]+','+this.seta2[i]+','+this.seta3[i]+','+'.8),rgba('+this.seta1[i]+','+this.seta2[i]+','+this.seta3[i]+','+'.8)),url(/assets/images/'+this.images[i]+')'}
+     console.log(b);
+     return b;
+  }
+
  }
