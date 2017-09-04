@@ -23,6 +23,7 @@ import { CourseService } from './services/course.service';
 import { EnrollService } from './services/enroll.service';
 
 import { AuthGuard } from './guards/auth.guard';
+import { AuthGuardAdmin } from './guards/authAdmin.guard';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { AuthGuard } from './guards/auth.guard';
     AuthenticationService,
     CourseService,
     EnrollService,
-    AuthGuard
+    AuthGuard,
+    AuthGuardAdmin
   ],
   bootstrap: [AppComponent]
   })

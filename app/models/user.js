@@ -16,10 +16,13 @@ var userSchema=new Schema({
   password:{
     type:String,
     required:true
+  },
+  role:{
+    type: Number,
+    required: true
   }
 });
 userSchema.methods.validPassword=function(password,hash,callback){
-     console.log(password);
      bcrypt.compare(password, hash, function(err, isMatch) {
 		 if(err) throw err;
 		 callback(null,isMatch);
@@ -37,3 +40,15 @@ userSchema.methods.generateJwt=function(){
 }
 var User=mongoose.model('User',userSchema);
 module.exports=mongoose.model('User',userSchema);
+module.exports.getUser=function(req,res){
+  var id=req.params["id"];
+  User.findOne({_id:id},function(err,doc){
+         if(err){
+           console.log(err);
+         }
+         else{
+           console.log(doc);
+           res.send(doc);
+         }
+  });
+}

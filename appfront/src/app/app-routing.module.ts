@@ -13,6 +13,7 @@ import { ViewComponent } from './viewCourse/view.component';
 
 import { AuthenticationService } from './services/authentication.service';
 import { AuthGuard } from './guards/auth.guard';
+import { AuthGuardAdmin } from './guards/authAdmin.guard';
 
 const appRoutes: Routes=[
    { path : '', component : HomeComponent, canActivate:[AuthGuard]},
@@ -33,7 +34,8 @@ const appRoutes: Routes=[
            path:'editCourse/:course',
            component: EditCourseComponent
          }
-      ]
+      ],
+      canActivate:[AuthGuardAdmin]
     },
    { path: 'viewCourse/:course',component: ViewComponent},
    { path : ' **',redirectTo: ''}

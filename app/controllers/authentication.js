@@ -27,6 +27,7 @@ module.exports.register=function(req,res){
   var user=new User();
   user.username=req.body.username;
   user.email=req.body.email;
+  user.role=1;
   bcrypt.genSalt(10,function(err,salt){
       bcrypt.hash(req.body.password,salt,function(err,hash){
           user.password=hash;
@@ -64,4 +65,7 @@ module.exports.login=function(req,res){
       res.status(401).json(info);
     }
   })(req,res);
+}
+module.exports.getUser=function(req,res){
+    User.getUser(req,res);
 }

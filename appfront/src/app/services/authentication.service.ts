@@ -28,7 +28,7 @@ export class AuthenticationService{
   }
   signup(email: string, username:string, password:string):Promise<boolean>{
      return this.http.post('http://localhost:3000/signup',JSON.stringify({email:email,username:username,password:password}),{headers:
-	 this.headers}).toPromise()
+	    this.headers}).toPromise()
     .then(function(res){
       let token=res.json() && res.json().token;
       if(token){
@@ -39,6 +39,13 @@ export class AuthenticationService{
         return false;
       }
     });
+  }
+  getUser(userid:any):Promise<any>{
+    const url=`http://localhost:3000/login/getUser/${userid}`;
+    return this.http.get(url).toPromise().then(data=>{
+        console.log(JSON.parse(data['_body']));
+        return JSON.parse(data['_body']);
+    })
   }
   logout():void{
     this.token=null;
