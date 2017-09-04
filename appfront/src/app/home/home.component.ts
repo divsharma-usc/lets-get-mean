@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit{
    seta3:any;
    images=['a.jpg','b.jpg','c.jpg','d.jpg','e.jpg','f.jpg']
    i:number;
+   isUser:boolean;
    quote:string;
    author:string;
    authors=["Steve Jobes","Bill Gates","Salvador Dali","Donatella Versace"]
@@ -46,6 +47,12 @@ export class HomeComponent implements OnInit{
         timer.subscribe(t=> {
         this.next();
       });
+      if(localStorage.getItem('currentUser')){
+        this.isUser=true;
+      }
+      else{
+        this.isUser=false;
+      }
 
    }
    enroll(course):void{
@@ -99,6 +106,19 @@ export class HomeComponent implements OnInit{
      }
       this.quote=this.quotes[this.i];
       this.author=this.authors[this.i];
+  }
+  logout(){
+    localStorage.removeItem('currentUser');
+    this.router.navigate(['/login']);
+  }
+  start(){
+    this.router.navigate(['/login']);
+  }
+  login(){
+    this.router.navigate(['/login']);
+  }
+  signup(){
+    this.router.navigate(['/signup']);
   }
 
  }

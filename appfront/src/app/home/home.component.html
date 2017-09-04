@@ -1,7 +1,17 @@
 <div id="maincover">
 <header id="mainheader">
-   <div>
+   <div id="homeicon">
       Coursea
+   </div>
+   <div id="rightend">
+       <div *ngIf="isUser">
+          <button id="one">My Classroom</button>
+          <button id="two" (click)="logout()">Logout</button>
+       </div>
+       <div *ngIf="!isUser">
+          <button id="one" (click)="login()">Login</button>
+          <button id="two" (click)="signup()">SignUp</button>
+       </div>
    </div>
 </header>
 <main id="cover">
@@ -27,13 +37,18 @@
             </div>
             <div id="line"></div>
             <div class="card-button">
-                   <div *ngIf="course.enroll===false;else other_content">
-                     <button (click)="enroll(course)" >Enroll Me</button>
-                   </div>
-                  <ng-template #other_content><button (click)="goto(course)" >View Course</button></ng-template>
-            </div>
-        </div>
-   </div>
+                   <div *ngIf="isUser">
+                     <div *ngIf="course.enroll===false;else other_content">
+                        <button (click)="enroll(course)" >Enroll Me</button>
+                    </div>
+                    <ng-template #other_content><button (click)="goto(course)" >View Course</button></ng-template>
+                  </div>
+                  <div *ngIf="!isUser">
+                     <button id="start"(click)="start()" >Start</button>
+                  </div>
+          </div>
+    </div>
+  </div>
 </main>
 <footer>
   <div id="footerline"></div>
