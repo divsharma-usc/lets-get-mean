@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css?family=Baloo+Bhaijaan');
+@import url('https://fonts.googleapis.com/css?family=Handlee');
+@import url('https://fonts.googleapis.com/css?family=Kalam');
+#mainheader{
+  background-color:#43adc1;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  box-shadow: 0 1px 20px 0 rgba(46,61,73,.2);
+  position: fixed;
+
+}
+#mainheader div#homeicon{
+  color: white;
+  font-family: 'Baloo Bhaijaan', cursive;
+  font-size: 26px;
+  padding-left: 140px;
+}
+#mainheader div#rightend{
+   margin-right: 70px;
+   #one{
+     background-color: #02b3e4;
+     border: none;
+     color:#fff;
+     padding:3px;
+     padding-left:15px;
+     padding-right:15px;
+     border-radius: 4px;
+     box-shadow: 8px 10px 20px 0 rgba(46,61,73,.15);
+   }
+   #two{
+     margin-left: 8px;
+     background-color: #02ccba;
+     border: none;
+     color:#fff;
+     padding:3px;
+     padding-left:15px;
+     padding-right:15px;
+     border-radius: 4px;
+     box-shadow: 8px 10px 20px 0 rgba(46,61,73,.15);
+   }
+}
+footer{
+  height: 200px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f2f8fa;
+  #footerline{
+     height: 1px;
+     background-color: #dbe2e8;
+     width: 700px;
+     margin-bottom: 10px;
+  }
+  svg{
+    padding: 4px;
+    color: #5e6364;
+    cursor: pointer;
+  }
+  p{
+    color:#5e6364;
+    font-size: 10px;
+  }
+}

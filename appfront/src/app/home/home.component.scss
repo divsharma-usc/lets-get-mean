@@ -172,3 +172,19 @@ footer{
   padding-right: 15px;
   letter-spacing: 0.08em;
 }
+#more_courses_button{
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: flex-end;
+  width: 950px;
+
+  button{
+    color:#01becf;
+    background-color: #fff;
+    border: none;
+    padding:4px;
+    font-size: 2.0rem;
+    line-height: 2.25rem;
+    font-weight: 400;
+  }
+}

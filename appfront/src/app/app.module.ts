@@ -14,6 +14,8 @@ import { AddCourseComponent } from './admin/addCourse.component';
 import { CoursesComponent } from './admin/courses.component';
 import { EditCourseComponent } from './admin/editCourse.component';
 import { ViewComponent } from './viewCourse/view.component';
+import { AllCoursesComponent } from './allCourses/allCourses.component';
+
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module'
@@ -35,7 +37,8 @@ import { AuthGuardAdmin } from './guards/authAdmin.guard';
     AddCourseComponent,
     CoursesComponent,
     EditCourseComponent,
-    ViewComponent
+    ViewComponent,
+    AllCoursesComponent
   ],
   imports: [
     BrowserModule,

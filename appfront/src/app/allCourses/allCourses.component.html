@@ -1,4 +1,3 @@
-<div id="maincover">
 <header id="mainheader">
    <div id="homeicon">
       Coursea
@@ -14,19 +13,8 @@
        </div>
    </div>
 </header>
+
 <main id="cover">
-  <div class="slider">
-    <div class="previous">
-       <button (click)="previous()"><i class="fa fa-angle-left" aria-hidden="true"></i></button>
-    </div>
-    <div class="content">
-        &quot;{{quote}}&quot;
-       <p id="author">- {{author}}</p>
-    </div>
-    <div class="next">
-      <button (click)="next()"><i class="fa fa-angle-right" aria-hidden="true"></i></button>
-    </div>
-  </div>
    <div *ngFor="let course of courses; let i = index">
         <div class="card-cover">
             <div class="card-title" [ngStyle]="getcolors(i)">
@@ -49,10 +37,8 @@
           </div>
     </div>
   </div>
-  <div id="more_courses_button">
-    <button (click)="allCourses()">See All Courses</button>
-  </div>
 </main>
+
 <footer>
   <div id="footerline"></div>
   <div id="contacts">
@@ -74,4 +60,3 @@
  </div>
  <p>&copy; 2017 divInc. Develop by Divyansh Sharma of NIT-H</p>
   </footer>
-</div>

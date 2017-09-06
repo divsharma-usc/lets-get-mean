@@ -120,5 +120,8 @@ export class HomeComponent implements OnInit{
   signup(){
     this.router.navigate(['/signup']);
   }
+  allCourses():void{
+    this.router.navigate(['/allCourses']);
+  }
 
  }

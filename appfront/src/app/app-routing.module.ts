@@ -10,6 +10,7 @@ import { AddCourseComponent } from './admin/addCourse.component';
 import { CoursesComponent } from './admin/courses.component';
 import { EditCourseComponent } from './admin/editCourse.component';
 import { ViewComponent } from './viewCourse/view.component';
+import { AllCoursesComponent } from './allCourses/allCourses.component';
 
 import { AuthenticationService } from './services/authentication.service';
 import { AuthGuard } from './guards/auth.guard';
@@ -38,6 +39,7 @@ const appRoutes: Routes=[
       canActivate:[AuthGuardAdmin]
     },
    { path: 'viewCourse/:course',component: ViewComponent},
+   { path: 'allCourses',component: AllCoursesComponent},
    { path : ' **',redirectTo: ''}
 ];
 
