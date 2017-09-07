@@ -1,3 +1,4 @@
+<div id="maincoverall">
 <header id="mainheader">
    <div id="homeicon">
       Coursea
@@ -13,15 +14,14 @@
        </div>
    </div>
 </header>
-
 <main id="cover">
    <div *ngFor="let course of courses; let i = index">
         <div class="card-cover">
-            <div class="card-title">
-                 <h1 class="card-title-text"></h1>
+            <div class="card-title" [ngStyle]="getcolors(i)">
+                 <h1 class="card-title-text">{{course.title}}</h1>
             </div>
             <div class="card-description">
-                   {{course.title}}
+                   {{course.description}}
             </div>
             <div id="line"></div>
             <div class="card-button">
@@ -32,7 +32,7 @@
                     <ng-template #other_content><button (click)="goto(course)" >View Course</button></ng-template>
                   </div>
                   <div *ngIf="!isUser">
-                     <button id="start"(click)="start()" >Start</button>
+                     <button id="start"(click)="start()" ng-hover="getcolor(i)" >Start</button>
                   </div>
           </div>
     </div>
@@ -60,3 +60,4 @@
  </div>
  <p>&copy; 2017 divInc. Develop by Divyansh Sharma of NIT-H</p>
   </footer>
+</div>
