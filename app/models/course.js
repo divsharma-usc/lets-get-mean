@@ -54,6 +54,16 @@ module.exports.getCoursesLimit=function(req,res){
         }
     });
 }
+module.exports.getAllCourses=function(req,res){
+    Course.find({}).exec(function(err,courses){
+        if(err){
+          console.log(err);
+        }
+        else{
+           res.send(courses);
+        }
+    });
+}
 module.exports.removeCourse=function(course_id,callback){
       Course.find({_id:course_id}).remove(callback);
 }
